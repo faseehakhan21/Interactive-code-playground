@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Interactive Code Playground</h2> 
+    <button id="toggle" >Dark Mode</button>
+    <div class="box">
+   <div class="box1">
+   
+    <label for="html">HTML</label>
+     
+    <textarea name="html" id="html" class="mode"></textarea>
+    <label for="css">CSS</label>
+    <textarea name="css" id="css" class="mode"></textarea>
+    <label for="js">JavaScript</label>
+    <textarea name="js" id="js" class="mode"></textarea>
+   </div>
+   <div class="box2">
+
+    <button id="run" onclick="run()">Run Code</button>
+    <button id="clear" onclick="clearcode()">Clear Code</button>
+        <iframe id="output"  class="mode"></iframe>
+        
+        </div>
+    </div>
+
+   
+    
+    <script src="script.js"></script>
+</body>
+</html>

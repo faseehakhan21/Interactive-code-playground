@@ -9,12 +9,44 @@ function run() {
     output.close();
 }
 
+// Save code to localStorage
+function saveCode(){
+    localStorage.setItem("html", document.getElementById("html").value);
+    localStorage.setItem("css", document.getElementById("css").value);                     
+    localStorage.setItem("js", document.getElementById("js").value);        
+}
+
+// Load saved code on page load
+window.onload = function(){
+    document.getElementById("html").value = localStorage.getItem("html") || "";
+    document.getElementById("css").value = localStorage.getItem("css") || "";
+    document.getElementById("js").value = localStorage.getItem("js") || "";
+
+    // Apply dark mode setting
+    const isDarkMode = localStorage.getItem("dark-mode") === "enabled";
+    applyDarkMode(isDarkMode);
+}
+
+document.getElementById("html").addEventListener("input", saveCode);
+document.getElementById("css").addEventListener("input", saveCode);
+document.getElementById("js").addEventListener("input", saveCode);
+
 function clearcode() {
     document.getElementById("html").value = "";
     document.getElementById("css").value = "";
     document.getElementById("js").value = "";
+    localStorage.removeItem("html");
+    localStorage.removeItem("css");
+    localStorage.removeItem("js");
+
+    let output = document.getElementById("output").contentWindow.document;
+
+    output.open();
+    output.write(" ");
+    output.close();
 }
 
+// Dark mode toggle
 const toggleButton = document.getElementById("toggle");
 const textareas = document.querySelectorAll(".mode");
 
@@ -40,9 +72,6 @@ function applyDarkMode(isDark) {
 }
 
 // Load dark mode setting from localStorage
-const isDarkMode = localStorage.getItem("dark-mode") === "enabled";
-applyDarkMode(isDarkMode);
-
 toggleButton.addEventListener("click", () => {
     const isDark = !document.body.classList.contains("dark-mode");
     applyDarkMode(isDark);
